@@ -23,8 +23,9 @@ function Trip() {
 
   return (
     <div className="app">
-      <h1>เที่ยวไหนดี</h1>
+      <h1 className="app-title">เที่ยวไหนดี</h1>
       <input
+        className="trip-input"
         type="text"
         placeholder="ค้นหาที่เที่ยว"
         value={searchTrip}
@@ -47,16 +48,17 @@ function Trip() {
             <div className="trip-detail">
               <div className="trip-title">{trip.title}</div>
               <div className="trip-description">{trip.description}</div>
-              <button onClick={() => (window.location.href = trip.url)}>
+              <button
+                className="trip-more-info"
+                onClick={() => (window.location.href = trip.url)}
+              >
                 อ่านต่อ
               </button>
-              <div className="tag">
+              <div className="trip-tag">
                 หมวด
-                <div className="tags">
-                  {trip.tags.map((tag, index) => (
-                    <span key={index}> {tag}</span>
-                  ))}
-                </div>
+                {trip.tags.map((tag, index) => (
+                  <span key={index}> {tag}</span>
+                ))}
               </div>
               <div className="trip-photo-more">
                 {trip.photos.slice(1).map((photo, index) => (
@@ -70,7 +72,7 @@ function Trip() {
                 ))}
               </div>
               <button
-                className="copy-link"
+                className="hyper-link"
                 onClick={() => {
                   navigator.clipboard.writeText(trip.url);
                 }}
