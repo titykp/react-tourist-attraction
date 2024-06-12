@@ -68,9 +68,17 @@ function Trip() {
                 หมวด
                 {trip.tags.map((tag, index) => (
                   <button
-                    onClick={() => setSearchTrip(tag)}
-                    className="underline underline-offset-auto p-1"
+                    className="underline underline-offset-auto p-1 cursor-pointer"
                     key={index}
+                    onClick={() =>
+                      setSearchTrip((prevSearchTrip) =>
+                        prevSearchTrip.includes(tag)
+                          ? prevSearchTrip
+                          : prevSearchTrip
+                          ? `${prevSearchTrip} ${tag}`
+                          : tag
+                      )
+                    }
                   >
                     {tag}
                   </button>
