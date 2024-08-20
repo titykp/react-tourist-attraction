@@ -38,24 +38,24 @@ function Trip() {
         <hr className="border-1 border-gray-500" />
       </div>
       <br />
-      <div className="trip-list w-screen ">
+      <div className="trip-list flex flex-col items-center w-3/4">
         {tripData.map((trip) => (
           <div
-            className="trip flex flex-row justify-around g-16 p-5 relative "
+            className="trip flex flex-col lg:flex-row lg:gap-[50px] gap-[10px] lg:p-10 p-2 justify-center"
             key={trip.eid}
           >
-            <div className="trip-preview pl-72">
+            <div className="trip-preview lg:h-[250px] lg:w-[400px] h-[180px]">
               <img
                 src={trip.photos[0]}
                 alt="trip-photo"
-                className="rounded-3xl w-96 h-64"
+                className="rounded-3xl h-full w-full"
               />
             </div>
-            <div className="trip-detail basis-1/2">
+            <div className="trip-detail basis-2/4">
               <div className="trip-title text-2xl font-semibold mb-2">
                 {trip.title}
               </div>
-              <div className="trip-description ">
+              <div className="trip-description">
                 {trip.description.substring(0, 100)}
               </div>
               <button
@@ -84,32 +84,33 @@ function Trip() {
                   </button>
                 ))}
               </div>
-              <div className="trip-photo-more flex flex-row justify-start gap-10 pt-4">
-                {trip.photos.slice(1).map((photo, index) => (
+              <div className="flex ">
+                <div className="trip-photo-more pt-4 flex gap-[16px] basis-full">
+                  {trip.photos.slice(1).map((photo, index) => (
+                    <img
+                      key={index}
+                      src={photo}
+                      alt="trip-photo-more"
+                      className="rounded-xl lg:w-1/6 w-1/4"
+                    />
+                  ))}
+                </div>
+
+                <button
+                  className="hyper-link lg:basis-16 flex flex-col justify-end"
+                  onClick={() => {
+                    navigator.clipboard.writeText(trip.url);
+                    alert("Link has been copied.");
+                  }}
+                >
                   <img
-                    key={index}
-                    src={photo}
-                    alt="trip-photo-more"
-                    width="150"
-                    className="rounded-xl"
-                  />
-                ))}
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnQWKofQxiQHCLIXa6LYNYc0htUvYPr481Jw&s"
+                    alt="hyper-link"
+                    className="lg:size-[60px] size-[30px] border rounded-full"
+                  ></img>
+                </button>
               </div>
             </div>
-            <button
-              className="hyper-link absolute top-48 right-72"
-              onClick={() => {
-                navigator.clipboard.writeText(trip.url);
-              }}
-            >
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnQWKofQxiQHCLIXa6LYNYc0htUvYPr481Jw&s"
-                alt="hyper-link"
-                width="60"
-                height="60"
-              ></img>
-            </button>
-            <br />
           </div>
         ))}
       </div>
