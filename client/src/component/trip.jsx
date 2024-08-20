@@ -7,7 +7,7 @@ function Trip() {
 
   const getTripData = async () => {
     const result = await axios.get(
-      `https://react-tourist-attraction-server.vercel.app/trips?keywords=${searchTrip}`
+      `${import.meta.env.VITE_BACKEND_URL}/trips?keywords=${searchTrip}`
     );
     // console.log(result.data.data);
     setTripData(result.data.data);
